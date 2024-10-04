@@ -114,18 +114,18 @@ app.get('/api/fundraisers/search', (req, res) => {
 
 // Getting Fundraiser by ID
 app.get('/api/fundraisers/:id', (req, res) => {
+  const fundraiserId = req.params.id;
   const query = `
-      SELECT FUNDRAISER.FUNDRAISER_ID, ORGANIZER, CAPTION, TARGET_FUNDING, CURRENT_FUNDING, CITY, NAME as CATEGORY
+      SELECT FUNDRAISER.FUNDRAISER_ID, ORGANIZER, CAPTION, TARGET_FUNDING, CURRENT_FUNDING, CITY, NAME as CATEGORY, 
+      DONATION.DONATION_ID, DONATION.DATE, DONATION.AMOUNT, DONATION.GIVER
       FROM FUNDRAISER
       JOIN CATEGORY ON FUNDRAISER.CATEGORY_ID = CATEGORY.CATEGORY_ID
-      WHERE FUNDRAISER_ID = ? AND ACTIVE = true;
+      LEFT JOIN DONATION ON FUNDRAISER.FUNDRAISER_ID = DONATION.FUNDRAISER_ID
+      WHERE FUNDRAISER.FUNDRAISER_ID = ?;
   `;
-
-  db.query(query, [req.params.id], (err, result) => {
-    if (err) throw err;
-    if (result.length === 0) {
-      return res.status(404).send('Fundraiser not found');
-    }
-    res.json(result[0]);
+  db.query(query, [fundraiserId], (err, results) => {
+      if (err) throw err;
+      res.json(results);
   });
 });
+
