@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="app.css" />
+    <title>Fundraiser Search</title>
+  </head>
+  <body class="container">
+    <nav class="nav">
+      <h2>CrowdGist</h2>
+      <ul class="nav-list">
+        <li class="list-item">
+          <a href="/client/index.html" id="homeLink">Home</a>
+        </li>
+        <li class="list-item">
+          <a href="/client/search.html" id="searchLink">Search Fundraisers</a>
+        </li>
+      </ul>
+    </nav>
+    <h1>Search Fundraisers</h1>
+
+      <!-- Search Form -->
+      <form id="search-form">
+        <label for="organizer">Organizer:</label>
+        <input type="text" id="organizer" name="organizer" />
+  
+        <label for="city">City:</label>
+        <input type="text" id="city" name="city" />
+  
+        <label for="category">Category:</label>
+        <input type="text" id="category" name="category" />
+  
+        <button type="submit">Search</button>
+      </form>
+
+      <div id="clear-btn-container">
+        <button id="clear-btn">Clear X</button>
+      </div>
+  
+      <h2>Search Results</h2>
+      <div id="search-results"></div>
+  
+      <script src="search.js"></script>
+</body>
+</html>

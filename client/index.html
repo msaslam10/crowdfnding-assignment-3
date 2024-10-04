@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="app.css" />
+    <title>CrowdGist</title>
+  </head>
+  <body>
+    <div class="container">
+      <nav class="nav">
+        <h2>CrowdGist</h2>
+        <ul class="nav-list">
+          <li class="list-item">
+            <a href="/client/index.html" id="homeLink">Home</a>
+          </li>
+          <li class="list-item">
+            <a href="/client/search.html" id="searchLink">Search Fundraisers</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="hero-section container">
+      <div class="hero-content">
+        <h1>Welcome to CrowdGist website</h1>
+        <p style="margin-bottom: 12px">
+          Join us in making a difference! Our crowdfunding platform empowers
+          individuals and organizations to raise funds for impactful projects
+          that change lives. Whether you’re supporting a creative initiative, a
+          charitable cause, or a community-driven effort, together we can turn
+          ideas into reality. Get started today and be a part of something
+          bigger!"
+        </p>
+        <button id="see-fundraiser">See All Fundraisers</button>
+      </div>
+
+      <img src="./happy-man.png" alt="happy-man" width="400px" />
+    </div>
+
+    <div id="mission-section">
+      <h2>Our Mission</h2>
+      <p class="mission-para">
+        At crowdGist, we believe in the power of community-driven change. Our
+        mission is to empower individuals and communities to come together to
+        support one another in times of need. We strive to provide a platform
+        that connects passionate supporters with those in need of assistance,
+        ensuring that no one has to face their challenges alone.
+      </p>
+    </div>
+
+    <div id="stories-section" class="container">
+      <h2>Inspiring Stories</h2>
+
+      <div class="story-container">
+        <div class="story-content">
+          <h3>The David Family</h3>
+          <p>
+            Last year, the Smith family faced an unexpected medical emergency.
+            With mounting medical bills and limited resources, they turned to
+            crowdMan for support. Thanks to the generous contributions from our
+            community members, we were able to raise over $15,000 to cover their
+            expenses. Today, the Smiths are healthy and thriving, and they often
+            volunteer with us to give back to the community that helped them
+            during their toughest time.
+          </p>
+        </div>
+
+        <div class="story-img">
+          <img
+            width="400px"
+            src="https://images.pexels.com/photos/2253879/pexels-photo-2253879.jpeg"
+            alt="david"
+          />
+        </div>
+      </div>
+
+      <div class="story-container">
+        <div class="story-img">
+          <img
+            src="https://images.pexels.com/photos/289737/pexels-photo-289737.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt="school"
+            width="400px"
+          />
+        </div>
+
+        <div class="story-content">
+          <h3>Local School Supplies Drive</h3>
+          <p>
+            In a small town, local teachers struggled to provide essential
+            school supplies for their students. With the help of crowdMan, we
+            organized a school supplies drive that raised over 1,000 backpacks
+            filled with school essentials. This initiative not only equipped
+            students with the necessary tools for learning but also brought the
+            community together to support education.
+          </p>
+        </div>
+      </div>
+
+      <div class="story-container">
+        <div class="story-content">
+          <h3>The Thompson Family Rebuilds After a Fire</h3>
+          <p>
+            The Thompson family lost their home to a devastating fire last
+            winter, leaving them with nothing but the clothes on their backs.
+            Faced with the daunting task of rebuilding their lives, they turned
+            to crowdMan. Within days, the platform mobilized hundreds of donors,
+            and together, we raised over $25,000 for the Thompson family. The
+            funds helped them secure temporary housing, purchase essential
+            items, and begin rebuilding their home. Today, the Thompsons have a
+            new house, and their story is a testament to the power of community.
+            They continue to share their gratitude by participating in
+            fundraising efforts for others in need.
+          </p>
+        </div>
+
+        <div class="story-img">
+          <img
+            src="https://images.pexels.com/photos/672636/pexels-photo-672636.jpeg"
+            alt="fire"
+            width="400px"
+          />
+        </div>
+      </div>
+
+      <div class="story-container">
+        <div class="story-img">
+          <img
+            src="https://images.pexels.com/photos/1043458/pexels-photo-1043458.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+            alt="garden"
+            width="400px"
+          />
+        </div>
+
+        <div class="story-content">
+          <h3>A Community Garden for All</h3>
+          <p>
+            In an urban neighborhood where fresh produce was hard to come by,
+            residents dreamed of starting a community garden. With limited
+            resources, they looked to crowdMan to make this vision a reality.
+            After launching their campaign, they raised over $8,000 to purchase
+            tools, seeds, and soil. The garden not only provided fresh fruits
+            and vegetables but also became a place for people to gather,
+            connect, and learn about sustainable living. The project continues
+            to thrive, feeding dozens of families and educating the next
+            generation on the importance of community-driven initiatives.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="fundraiser-container container">
+      <h2>Active Fundraisers</h2>
+      <div id="fundraiser-list"></div>
+    </div>
+
+    <div id="contact-section">
+      <h2>Contact Us</h2>
+      <p>
+        Have questions? Want to learn more about our initiatives? Reach out to
+        us!
+      </p>
+
+      
+      <div class="contact-container">
+        <div class="contact-item">
+          <img height="48px" width="48px" src="./imgs/mail-icon.png" alt="mail-icon" />
+          <p>info@crowdgist.org</p>
+        </div>
+
+        <div class="contact-item">
+          <img width="48px" height="48px" src="./imgs/phone-icon.png" alt="phone-icon" />
+          <p>(08) 9468 9999</p>
+        </div>
+
+        <div class="contact-item">
+          <img width="48px" height="48px" src="./imgs/address-icon.png" alt="address-icon" />
+          <p>456 Community Lane, Perth, WA 6000</p>
+        </div>
+      </div>
+    </div>
+
+    <footer class="container"><p>@copyright 2024 crowdfunding</p></footer>
+
+    <script src="app.js" />
+  </body>
+</html>
