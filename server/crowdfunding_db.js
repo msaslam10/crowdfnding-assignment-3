@@ -175,6 +175,13 @@ app.put('/api/fundraisers/:id', (req, res) => {
   const fundraiserId = req.params.id;
   const { organizer, caption, target_funding, current_funding, city, active, category_id } = req.body;
 
+    //   // Validation of fields
+    if (!organizer || !caption || !target_funding || !city || !category_id) {
+      return res
+        .status(400)
+        .json({ error: 'Please provide all required fields.' });
+    }
+
   const query = `
       UPDATE FUNDRAISER
       SET ORGANIZER = ?, CAPTION = ?, TARGET_FUNDING = ?, CURRENT_FUNDING = ?, CITY = ?, ACTIVE = ?, CATEGORY_ID = ?
