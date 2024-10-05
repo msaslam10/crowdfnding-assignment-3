@@ -143,3 +143,25 @@ app.post('/api/donation', (req, res) => {
       res.status(201).json({ message: 'Donation added successfully.' });
   });
 });
+
+// Insert a new fundraiser
+app.post('/api/fundraisers', (req, res) => {
+  const { organizer, caption, target_funding, current_funding, city, category_id } = req.body;
+
+  const query = `
+      INSERT INTO FUNDRAISER (ORGANIZER, CAPTION, TARGET_FUNDING, CURRENT_FUNDING, CITY, CATEGORY_ID)
+      VALUES (?, ?, ?, ?, ?, ?)
+  `;
+
+  db.query(query, [organizer, caption, target_funding, current_funding, city, category_id], (err, results) => {
+      if (err) {
+          console.error('Error inserting fundraiser: ', err);
+          return res.status(500).json({ error: 'An error occurred while inserting the fundraiser.' });
+      }
+
+      res.status(201).json({
+          message: 'Fundraiser created successfully!',
+          fundraiserId: results.insertId
+      });
+  });
+});
