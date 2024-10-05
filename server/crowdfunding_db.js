@@ -148,6 +148,10 @@ app.post('/api/donation', (req, res) => {
 app.post('/api/fundraisers', (req, res) => {
   const { organizer, caption, target_funding, current_funding, city, category_id } = req.body;
 
+  if (!organizer || !caption || !target_funding || !city || !category_id) {
+    return res.status(400).json({ error: 'Please provide all required fields.' });
+}
+
   const query = `
       INSERT INTO FUNDRAISER (ORGANIZER, CAPTION, TARGET_FUNDING, CURRENT_FUNDING, CITY, CATEGORY_ID)
       VALUES (?, ?, ?, ?, ?, ?)
