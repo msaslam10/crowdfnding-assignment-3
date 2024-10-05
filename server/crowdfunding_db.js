@@ -203,3 +203,53 @@ app.put('/api/fundraisers/:id', (req, res) => {
       });
   });
 });
+
+
+// Remove existing fundraiser by ID
+app.delete('/api/fundraisers/:id', (req, res) => {
+  const fundraiserId = req.params.id;
+
+  // Any donation check
+  const donationCheckQuery = `
+      SELECT COUNT(*) AS noOfDonations 
+      FROM DONATION 
+      WHERE FUNDRAISER_ID = ?;
+  `;
+
+  db.query(donationCheckQuery, [fundraiserId], (err, results) => {
+    if (err) {
+      console.error('Error checking donations: ', err);
+      return res
+        .status(500)
+        .json({ error: 'An error occurred while checking for donations.' });
+    }
+
+    const noOfDonations = results[0].noOfDonations;
+
+    // Dont delete if there are donations
+    if (noOfDonations > 0) {
+      return res
+        .status(400)
+        .json({ error: 'Cannot delete fundraiser with existing donations.' });
+    }
+
+    // Delete Query
+    const deleteQuery = `
+          DELETE FROM FUNDRAISER 
+          WHERE FUNDRAISER_ID = ?;
+      `;
+
+    db.query(deleteQuery, [fundraiserId], (err, results) => {
+      if (err) {
+        console.error('Error deleting fundraiser: ', err);
+        return res
+          .status(500)
+          .json({ error: 'An error occurred while deleting the fundraiser.' });
+      }
+
+      res.status(200).json({
+        message: 'Fundraiser deleted successfully!',
+      });
+    });
+  });
+});
