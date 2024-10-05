@@ -37,10 +37,9 @@ app.use(
 // API to get fundraiser information
 app.get('/api/fundraisers', (req, res) => {
   const query = `
-      SELECT FUNDRAISER.FUNDRAISER_ID, ORGANIZER, CAPTION, TARGET_FUNDING, CURRENT_FUNDING, CITY, NAME as CATEGORY
+      SELECT FUNDRAISER.FUNDRAISER_ID, ORGANIZER, CAPTION, TARGET_FUNDING, CURRENT_FUNDING, CITY, ACTIVE, NAME as CATEGORY
       FROM FUNDRAISER
       JOIN CATEGORY ON FUNDRAISER.CATEGORY_ID = CATEGORY.CATEGORY_ID
-      WHERE ACTIVE = true;
   `;
   db.query(query, (err, results) => {
     if (err) throw err;
