@@ -169,3 +169,30 @@ app.post('/api/fundraisers', (req, res) => {
       });
   });
 });
+
+// Update fundraiser information
+app.put('/api/fundraisers/:id', (req, res) => {
+  const fundraiserId = req.params.id;
+  const { organizer, caption, target_funding, current_funding, city, active, category_id } = req.body;
+
+  const query = `
+      UPDATE FUNDRAISER
+      SET ORGANIZER = ?, CAPTION = ?, TARGET_FUNDING = ?, CURRENT_FUNDING = ?, CITY = ?, ACTIVE = ?, CATEGORY_ID = ?
+      WHERE FUNDRAISER_ID = ?
+  `;
+
+  db.query(query, [organizer, caption, target_funding, current_funding, city, active, category_id, fundraiserId], (err, results) => {
+      if (err) {
+          return res.status(500).json({ error: 'An error occurred while updating the fundraiser.' });
+      }
+
+      if (results.affectedRows === 0) {
+          return res.status(404).json({ message: 'Fundraiser not found.' });
+      }
+
+      res.status(200).json({
+          message: 'Fundraiser updated successfully!',
+          fundraiserId: fundraiserId
+      });
+  });
+});
