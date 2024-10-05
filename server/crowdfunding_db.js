@@ -129,3 +129,17 @@ app.get('/api/fundraisers/:id', (req, res) => {
   });
 });
 
+// Adds donation to donation table
+app.post('/api/donation', (req, res) => {
+  const { amount, giver, fundraiserId } = req.body;
+  
+  const query = `
+      INSERT INTO DONATION (AMOUNT, GIVER, FUNDRAISER_ID)
+      VALUES (?, ?, ?)
+  `;
+  
+  db.query(query, [amount, giver, fundraiserId], (err, results) => {
+      if (err) throw err;
+      res.status(201).json({ message: 'Donation added successfully.' });
+  });
+});
