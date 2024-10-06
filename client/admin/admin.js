@@ -39,6 +39,19 @@ const fetchFundraisers = async () => {
             window.location.href = `/client/admin/update-fundraiser.html?id=${fundraiserId}`;
           });
         });
+
+        // Event listener for delete buttons
+        document.querySelectorAll('.delete-btn').forEach((deleteBtn) => {
+          deleteBtn.addEventListener('click', async (event) => {
+            const fundraiserId = event.target.getAttribute('data-id');
+
+            // Confirmation dialog
+            const confirmDelete = confirm('Are you sure you want to delete?');
+            if (confirmDelete) {
+              console.log('Deleted!');
+            }
+          });
+        });
       });
   };
   
