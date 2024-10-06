@@ -122,6 +122,7 @@ app.get('/api/fundraisers/:id', (req, res) => {
           TARGET_FUNDING, 
           CURRENT_FUNDING, 
           CITY, 
+          ACTIVE,
           CATEGORY.CATEGORY_ID,
           CATEGORY.NAME AS CATEGORY, 
           DONATION.DONATION_ID, 
@@ -139,13 +140,12 @@ app.get('/api/fundraisers/:id', (req, res) => {
   `;
   db.query(query, [fundraiserId], (err, results) => {
     if (err) {
-      console.error(err);  
+      console.error(err);  // Log the error for debugging
       return res.status(500).send('Error retrieving fundraiser'); // Send error response
     }
     res.json(results);
   });
 });
-
 
 // Adds donation to donation table
 app.post('/api/donation', (req, res) => {
