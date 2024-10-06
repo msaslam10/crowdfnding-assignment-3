@@ -15,6 +15,8 @@ const fetchFundraisers = async () => {
             <div class="button-container-admin">
               <button class="details-btn" data-id="${fundraiser.FUNDRAISER_ID}">View Details</button>
               <button class="update-btn" data-id="${fundraiser.FUNDRAISER_ID}">Update</button>
+              <button class="delete-btn" data-id="${fundraiser.FUNDRAISER_ID}">
+                <i class="fas fa-trash-alt"></i></button>
             </div>
           `;
           fundraiserList.appendChild(div);
