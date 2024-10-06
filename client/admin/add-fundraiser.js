@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Redirect after 2 seconds to admin panel
             setTimeout(() => {
                 window.location.href = '/client/admin/admin.html';
-            }, 2000)
+            }, 1000)
             
           } else {
             // Show error message
