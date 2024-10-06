@@ -24,5 +24,11 @@ const fetchFundraisers = async () => {
       });
   };
   
+  // Navigate to add fundraiser page
+  const addBtn = document.getElementById('add-fundraiser-btn');
+  addBtn.addEventListener('click', (event) => {
+    window.location.href = 'add-fundraiser.html';
+  });
+  
   fetchFundraisers();
   
