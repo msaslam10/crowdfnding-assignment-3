@@ -111,22 +111,41 @@ app.get('/api/fundraisers/search', (req, res) => {
   });
 });
 
-// Getting Fundraiser by ID
+// Getting Fundraiser by ID 
 app.get('/api/fundraisers/:id', (req, res) => {
   const fundraiserId = req.params.id;
   const query = `
-      SELECT FUNDRAISER.FUNDRAISER_ID, ORGANIZER, CAPTION, TARGET_FUNDING, CURRENT_FUNDING, CITY, NAME as CATEGORY, 
-      DONATION.DONATION_ID, DONATION.DATE, DONATION.AMOUNT, DONATION.GIVER
-      FROM FUNDRAISER
-      JOIN CATEGORY ON FUNDRAISER.CATEGORY_ID = CATEGORY.CATEGORY_ID
-      LEFT JOIN DONATION ON FUNDRAISER.FUNDRAISER_ID = DONATION.FUNDRAISER_ID
-      WHERE FUNDRAISER.FUNDRAISER_ID = ?;
+      SELECT 
+          FUNDRAISER.FUNDRAISER_ID, 
+          ORGANIZER, 
+          CAPTION, 
+          TARGET_FUNDING, 
+          CURRENT_FUNDING, 
+          CITY, 
+          CATEGORY.CATEGORY_ID,
+          CATEGORY.NAME AS CATEGORY, 
+          DONATION.DONATION_ID, 
+          DONATION.DATE, 
+          DONATION.AMOUNT, 
+          DONATION.GIVER
+      FROM 
+          FUNDRAISER
+      JOIN 
+          CATEGORY ON FUNDRAISER.CATEGORY_ID = CATEGORY.CATEGORY_ID
+      LEFT JOIN 
+          DONATION ON FUNDRAISER.FUNDRAISER_ID = DONATION.FUNDRAISER_ID
+      WHERE 
+          FUNDRAISER.FUNDRAISER_ID = ?;
   `;
   db.query(query, [fundraiserId], (err, results) => {
-      if (err) throw err;
-      res.json(results);
+    if (err) {
+      console.error(err);  
+      return res.status(500).send('Error retrieving fundraiser'); // Send error response
+    }
+    res.json(results);
   });
 });
+
 
 // Adds donation to donation table
 app.post('/api/donation', (req, res) => {
