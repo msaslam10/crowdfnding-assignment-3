@@ -11,6 +11,11 @@
     background-color: #f9f9f9;
   }
   
-  .buttons-container{
+  /* Container to hold Details and Update button */
+
+  .button-container-admin {
     display: flex;
+    justify-content: space-between;
+    margin-top: 10px; /* Space above the buttons */
   }
+  

@@ -1,8 +1,10 @@
 const fetchFundraisers = async () => {
     await fetch(`http://localhost:3000/api/fundraisers`)
-      .then((resposne) => resposne.json())
+      .then((response) => response.json())
       .then((fundraisersData) => {
         const fundraiserList = document.getElementById('fundraiser-list');
+        fundraiserList.innerHTML = ''; // Clear previous entries
+  
         fundraisersData.forEach((fundraiser) => {
           const div = document.createElement('div');
           div.innerHTML = `
@@ -10,10 +12,15 @@ const fetchFundraisers = async () => {
             <p>Organizer: ${fundraiser.ORGANIZER}</p>
             <p><strong>${fundraiser.CURRENT_FUNDING}</strong> off <strong>${fundraiser.TARGET_FUNDING}</strong> done</p>
             <p>City: ${fundraiser.CITY}</p>
-            <button class="details-btn" data-id="${fundraiser.FUNDRAISER_ID}">View Details</button>
+            <div class="button-container-admin">
+              <button class="details-btn" data-id="${fundraiser.FUNDRAISER_ID}">View Details</button>
+              <button class="update-btn" data-id="${fundraiser.FUNDRAISER_ID}">Update</button>
+            </div>
           `;
           fundraiserList.appendChild(div);
         });
+  
+        // Event listeners for detail buttons
         document.querySelectorAll('.details-btn').forEach((detailBtn) => {
           detailBtn.addEventListener('click', (event) => {
             const fundraiserId = event.target.getAttribute('data-id');
@@ -21,8 +28,18 @@ const fetchFundraisers = async () => {
             window.location.href = `/client/details.html?id=${fundraiserId}`;
           });
         });
+  
+        // Event listeners for update buttons
+        document.querySelectorAll('.update-btn').forEach((updateBtn) => {
+          updateBtn.addEventListener('click', (event) => {
+            const fundraiserId = event.target.getAttribute('data-id');
+            console.log(fundraiserId);
+            window.location.href = `/client/admin/update-fundraiser.html?id=${fundraiserId}`;
+          });
+        });
       });
   };
+  
   
   // Navigate to add fundraiser page
   const addBtn = document.getElementById('add-fundraiser-btn');
