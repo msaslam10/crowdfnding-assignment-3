@@ -48,7 +48,28 @@ const fetchFundraisers = async () => {
             // Confirmation dialog
             const confirmDelete = confirm('Are you sure you want to delete?');
             if (confirmDelete) {
-              console.log('Deleted!');
+              try {
+                const response = await fetch(
+                  `http://localhost:3000/api/fundraisers/${fundraiserId}`,
+                  {
+                    method: 'DELETE',
+                  }
+                );
+  
+                if (response.ok) {
+                  alert('Fundraiser deleted successfully!');
+                  fetchFundraisers(); // Refresh the list after deletion
+                } else {
+                  const errorData = await response.json();
+                  alert(
+                    errorData.error ||
+                      'Failed to delete fundraiser. Please try again.'
+                  );
+                }
+              } catch (error) {
+                console.error('Error deleting fundraiser:', error);
+                alert('Failed to delete fundraiser. Please try again.');
+              }
             }
           });
         });
