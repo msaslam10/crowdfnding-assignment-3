@@ -70,5 +70,5 @@ const displayDonations = (fundraiserData) => {
 const donateButton = document
   .getElementById('donate')
   .addEventListener('click', () => {
-    alert('Function under construction');
+    window.location.href = `/client/donation.html?id=${fundraiserId}`;
   });

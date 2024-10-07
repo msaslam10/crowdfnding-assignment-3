@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="app.css" />
+    <title>Donation page</title>
+  </head>
+  <body class="container">
+    <nav class="nav">
+      <h2>CrowdGist</h2>
+      <ul class="nav-list">
+        <li class="list-item">
+          <a href="/client/index.html" id="homeLink">Home</a>
+        </li>
+        <li class="list-item">
+          <a href="/client/search.html" id="searchLink">Search Fundraisers</a>
+        </li>
+      </ul>
+    </nav>
+    <h2 style="text-align: center; margin-bottom: 40px">Add Donation</h2>
+    <h2 id="fundraiser-caption">Fundraiser Title</h2>
+    <progress></progress>
+    <div class="fundraiser-details">
+      <div id="fundraiser-organizer">Organizer:</div>
+      <div class="fundraiser-city">
+        <img src="./imgs/address-icon.png" alt="address" />
+        <div id="fundraiser-city">City</div>
+      </div>
+    </div>
+
+    <hr class="" />
+
+    <script src="donation.js"></script>
+  </body>
+</html>
