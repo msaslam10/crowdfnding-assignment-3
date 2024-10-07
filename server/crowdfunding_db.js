@@ -20,6 +20,9 @@ db.connect((err) => {
 const express = require('express');
 const app = express();
 
+app.use(express.json());
+
+
 const PORT = process.env.PORT || 3000; // Default to port 3000
 
 app.listen(PORT, () => {
@@ -33,6 +36,8 @@ app.use(
     origin: true,
   })
 );
+
+// APIS start from here
 
 // API to get fundraiser information
 app.get('/api/fundraisers', (req, res) => {

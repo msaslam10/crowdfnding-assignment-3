@@ -93,6 +93,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         if (response.ok) {
           alert('Fundraiser updated successfully!');
+          window.location.href = '/client/admin/admin.html'
         } else {
           throw new Error('Error updating fundraiser');
         }
