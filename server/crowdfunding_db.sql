@@ -1,19 +1,19 @@
--- Create the database
+-- Step 1: Create the database
 CREATE DATABASE IF NOT EXISTS crowdfunding_db;
 USE crowdfunding_db;
 
--- Drop existing tables if they exist to avoid conflicts
+-- Step 2: Drop existing tables if they exist to avoid conflicts
 DROP TABLE IF EXISTS DONATION;
 DROP TABLE IF EXISTS FUNDRAISER;
 DROP TABLE IF EXISTS CATEGORY;
 
--- Create the CATEGORY table
+-- Step 3: Create the CATEGORY table
 CREATE TABLE CATEGORY(
     CATEGORY_ID INT AUTO_INCREMENT PRIMARY KEY,
     NAME VARCHAR(100) NOT NULL
 );
 
--- Create the FUNDRAISER table
+-- Step 4: Create the FUNDRAISER table
 CREATE TABLE FUNDRAISER (
     FUNDRAISER_ID INT AUTO_INCREMENT PRIMARY KEY,
     ORGANIZER VARCHAR(100) NOT NULL,
@@ -26,7 +26,7 @@ CREATE TABLE FUNDRAISER (
     FOREIGN KEY (CATEGORY_ID) REFERENCES CATEGORY(CATEGORY_ID)
 );
 
--- Create the DONATION table
+-- Step 5: Create the DONATION table
 CREATE TABLE DONATION (
     DONATION_ID INT AUTO_INCREMENT PRIMARY KEY,
     DATE TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -36,13 +36,13 @@ CREATE TABLE DONATION (
     FOREIGN KEY (FUNDRAISER_ID) REFERENCES FUNDRAISER(FUNDRAISER_ID)
 );
 
--- Insert records into the CATEGORY table
+-- Step 6: Insert records into the CATEGORY table
 INSERT INTO CATEGORY (NAME) VALUES
     ('Medical'),
     ('Education'),
     ('Environmental Support');
 
--- Insert records into the FUNDRAISER table
+-- Step 7: Insert records into the FUNDRAISER table
 INSERT INTO FUNDRAISER (ORGANIZER, CAPTION, TARGET_FUNDING, CURRENT_FUNDING, CITY, ACTIVE, CATEGORY_ID)
 VALUES
     ('Hope for All', 'Provide urgent medical care for underprivileged children', 22000, 16000, 'Sydney', TRUE, 1),
@@ -61,7 +61,7 @@ VALUES
     ('Healthcare for All', 'Ensure accessible medical facilities', 35000, 20000, 'Sydney', TRUE, 1),
     ('Clean Water Access', 'Provide clean water to rural areas', 27000, 19000, 'Brisbane', TRUE, 3);
 
--- Insert records into the DONATION table
+-- Step 8: Insert records into the DONATION table
 INSERT INTO DONATION (AMOUNT, GIVER, FUNDRAISER_ID)
 VALUES
     (500, 'Jacob Smith', 1),
